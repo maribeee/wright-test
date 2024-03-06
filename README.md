@@ -20,7 +20,8 @@ If I were to flesh this out further, some things to consider doing might be:
 - Clone this project to your local machine and `cd` into the project
 - Run `composer install`
 - Run `npm install`
-- 
+- In one console tab, run `npm run dev` to build css and js
+- In another console tab, run `php artisan serve` -- The project will be at the address given from this command
 
 
 ## Test Instructions From Wright20
