@@ -19,14 +19,13 @@ class EquationSolver extends Component
     public string $equationSyntaxError;
     public string $equationSubmittedError;
     public string $calculationError;
-    public string $buttonsDisabled;
+    public bool $buttonsDisabled = false;
 
     public function messages()
     {
         return [
             'newEquationEntry.required' => 'Equation cannot be empty',
-            'newEquationEntry.max' => 'Equation must be less than 255 characters',
-            'newEquationEntry.string' => 'Equation must be a string',
+            'newEquationEntry.max' => 'Equation must be less than 255 characters'
         ];
     }
 
@@ -60,8 +59,7 @@ class EquationSolver extends Component
         $validated = $this->validate([
             'newEquationEntry' => [
                 'required',
-                'max:255',
-                'string'
+                'max:255'
             ],
         ]);
 
@@ -263,7 +261,7 @@ class EquationSolver extends Component
      */
     private function variablesCorrectlyPositioned(string $equation): bool
     {
-        if( preg_match('/\d[a-z]|[a-z]\.|\.[a-z]|[a-z]\d|[a-z][a-z]|[+-][+-]|\.$|\.[+-]/',  $equation) ) {
+        if( preg_match('/\d[a-z]|[a-z]\.|\.[a-z]|[a-z]\d|[a-z][a-z]|[+-][+-]|\.$|\.[+-]|\.\./',  $equation) ) {
             $this->equationSyntaxError = 'Letter variable cannot be directly preceded or followed by a number. Two letter variables or two operators also cannot be directly next to each other. Variable cannot have or be a decimal. Decimal cannot be followed by nothing.';
             $this->equationSubmittedError = 'You submitted: ' . $equation;
             return false;
@@ -283,6 +281,10 @@ class EquationSolver extends Component
         return preg_match('/[a-z]/', $equation);
     }
 
+
+    /**
+     * Render the livewire component
+     */
     #[Title('Simple Equation Solver')]
     public function render()
     {

@@ -1,6 +1,6 @@
 <div class="p-4 flex flex-col gap-10">
     <div>
-        <h1 class="uppercase text-bold text-secondary text-4xl">Simple Equation Summer</h1>
+        <h1 class="uppercase text-bold text-secondary text-4xl">Simple Equation Solver</h1>
         <p class="pt-4">
             Use this tool to calculate up to 26 addition or subtraction equations.
             <br>You can use previous equations as variables in equations further down the line.
