@@ -16,6 +16,16 @@ class EquationSolver extends Component
     public string $newEquationEntry;
 
     public string $equationSyntaxError;
+    public string $equationSubmittedError;
+
+    public function messages()
+    {
+        return [
+            'newEquationEntry.required' => 'Equation cannot be empty',
+            'newEquationEntry.max' => 'Equation must be less than 255 characters',
+            'newEquationEntry.string' => 'Equation must be a string',
+        ];
+    }
 
     public function addNewEquation() {
         $this->reset('equationSyntaxError');
