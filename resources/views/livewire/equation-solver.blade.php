@@ -20,6 +20,19 @@
         </button>
     </form>
 
+    <div class="mt-4">
+        @error('newEquationEntry')
+        <div class="bg-error border border-error text-error rounded-md p-4">
+            {{ $message }}
+        </div>
+        @enderror
+        @if ($equationSyntaxError)
+            <div class="bg-error border border-error text-error rounded-md p-4 flex flex-col gap-3 text-sm">
+                <p>{{ $equationSyntaxError }}</p>
+            </div>
+        @endif
+    </div>
+
     {{ $newEquationEntry }}
 
 </div>
