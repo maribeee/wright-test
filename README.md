@@ -1,66 +1,150 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Wright Dev Test
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About Project
 
-## About Laravel
+Hello friends! This is a solution for Wright20's dev test, question #4
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+I learned Livewire to solve this test and wanted to utilize some elements of Livewire and Livewire validation, as well as to make the solution usable without having to manually add a json file to the project, so I solved it by creating an input which allows users to enter up to 26 equations, each corresponding to a letter of the alphabet as a variable.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Users can enter equations one at a time, or separate them by commas. The equations are validated and then cleaned up. Errors are thrown when equations are invalid, or when the calculation is run and it turns out that vaildly formatted equations are unsolvable.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+If I were to flesh this out further, some things to consider doing might be:
+- Componentizing the front end elements such as buttons to be reusable
+- Saving equations to a database
+- Allowing users to delete or edit equations that have already been entered
+- Maybe pulling out certain string parsing functionality into utilities so that they could be used across the app (assuming this would be a larger app)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## How To Run
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Clone this project to your local machine and `cd` into the project
+- Run `composer install`
+- Run `npm install`
+- 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Test Instructions From Wright20
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+We have created this test in hopes it allows candidates to demonstrate their strengths rather than using a
+multiple-choice skills test. This test should take about two to three hours to complete and should be a bit of fun. We
+strongly encourage you to focus on your strengths when choosing an approach; however, keep in mind it will be easier for
+us to evaluate your ability to hit the ground running with our existing tech stack if you use the tools from our
+existing stack listed in the job description (Laravel, PHP, Vue).
 
-### Premium Partners
+You may use existing libraries, tools, or frameworks; however, you MUST include a readme which should describe the steps
+required to run your test response on a generic environment. You are encouraged to utilize any online resource you would
+normally be able to access during a typical work day: google, stack overflow answers, documentation, reference material,
+etc... You should not allow another person to assist your response in any way. You may be disqualified if you post any
+part of the challenge to stack overflow or other forums. Be prepared to answer questions about your submission during a
+technical interview. We will find out if you don't know your own code.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+A final note on the use of AI: we currently implement generative AI tools in our team; however, the long-term
+viability of these tools within the team is still in question given concerns about regulation, security, privacy, and
+IP. You are welcome to use AI tools to complete this test. However, we will prefer candidates who demonstrate the
+ability to use AI tools to augment their own abilities rather than replace them in the event we need to pivot away from
+AI tools in the future.
 
-## Contributing
+Getting Help from Wright
+------------------------
+Please let us know if:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- You have a disability which hinders completion or delivery of your solution
+- You feel you need more time to complete this test for any reason
+- You need clarification or have questions about this test
 
-## Code of Conduct
+You can reach us via email at jsteelman@wright20.com
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Instructions:
+------------
 
-## Security Vulnerabilities
+1. Choose a task which you believe will best demonstrate your programming ability.
+2. Initialize the project with a git repo and commit your work as you go.
+3. Create a readme with instructions on how to run your project. Please be sure to specify the versions of any language,
+   framework, or tool your solution requires in the setup.
+4. Make a private repo on github and invite github user `jksteelman` to view the project.
+5. Email `jsteelman@wright20.com` to check out your submission with a link to your repo.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Scoring Rubric
+--------------
+Of a total 100pts:
 
-## License
+- 30: Solution Completeness
+- 15: Solution Documentation and Readability
+- 15: Challenge Difficulty
+- 10: Completed on time
+- 10: Solution Creativity and Cleverness
+- 10: Solution Readme Completeness
+- 10: Solution includes PHPUnit, Jest, Cypress, or other testing mechanism.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Challenge Task Options (Choose One)
+----------------------
+
+1. Build an interactive, single-round jeopardy board using http://jservice.io/. You can create whatever interactivity
+   you are comfortable with to track right/wrong answers. Presentational creativity is encouraged while providing
+   sufficient functional code to demonstrate your ability.
+
+2. Make a mind map visualization of https://rickandmortyapi.com/ by location, resident relationships, universe, episode,
+   species, and/or status. The difficulty of this task will be determined by the complexity of the relationships
+   inferred by the presentation. Presentational creativity is encouraged while providing sufficient functional code
+   to demonstrate your ability.
+
+3. Create a hidden-word puzzle solver given a provided array of strings which represents a puzzle, such as:
+     ```json
+       [
+           "GQPVMISSIOSSTUDVUWMSE",
+           "REGIUSVICTRIXSDUCUNIA",
+           "NUNQUEMIMPERIPHPUMADI",
+           "URIASVJLUMINCUBICULEM",
+           "ASSIVDVSERGTSOPERENRH"
+       ]
+     ```
+
+   and a given set of words like:
+
+     ```json
+       [
+         "VUEJS",
+         "PHP",
+         "REDIS",
+         "POSTGRES"
+       ] 
+     ```
+
+   The result should be the original puzzle except we want to only see the answers by replacing the non-word-answers in
+   the haystack replaced with a `*`. For example:
+
+     ```json
+       [
+         "***V***************S*",
+         "****U**************I*",
+         "*****E*******PHP***D*",
+         "******J************E*",
+         "*******SERGTSOP****R*"
+       ]
+     ```
+    - The words may appear forwards, backward, up, down, or diagonally.
+    - Characters may be shared by other words (the S in VueJS is shared with Postgres, for example)
+    - The max puzzle size is 316x316 or 10^5 search characters.
+
+4. Make a simple equation solver from input strings like:
+     ```json
+       {
+         "a": "2 + 10",
+         "b": "a+4",
+         "c": "a + b -1"
+       }
+     ```
+   with output something like:
+
+       a: 12
+       b: 16
+       c: 27
+
+    - The equations will only ever contain addition or subtraction. Multiplication, division, and any other
+      operators should return null or error.
+    - The equations will only ever reference variables from preceding lines in the same payload.
+    - Input spacing may be inconsistent
+    - If the equation cannot be solved or is mal-formed, the output for the line should be `null`.
+    - Note, we're not looking for Gaussian Elimination, we're looking for something that parses strings.
+    - Note, there are PHP and JS Math-String Parsing Libraries which could solve this problem with relative ease;
+      however, the result would not have enough work to evaluate a candidate's coding ability.   
