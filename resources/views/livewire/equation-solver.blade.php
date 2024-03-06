@@ -64,14 +64,20 @@
             </div>
         </div>
 
-        <form wire:submit="calculateEquations">
-            <button
-                    class="py-2 px-6 font-bold text-button-primary hover:text-button-hover disabled:text-button-disabled bg-button-primary hover:bg-button-hover disabled:bg-button-disabled disabled:cursor-not-allowed text-xl rounded-md transition-all tracking-wider uppercase"
-                    type="submit"
-                    @if($buttonsDisabled) disabled @endif
-            >Calculate
-            </button>
-        </form>
+        <div class="flex flex-col sm:flex-row gap-6 justify-between">
+            <form wire:submit="calculateEquations">
+                <button
+                        class="py-2 px-6 font-bold text-button-primary hover:text-button-hover disabled:text-button-disabled bg-button-primary hover:bg-button-hover disabled:bg-button-disabled disabled:cursor-not-allowed text-xl rounded-md transition-all tracking-wider uppercase"
+                        type="submit"
+                        @if($buttonsDisabled) disabled @endif
+                >Calculate
+                </button>
+            </form>
+
+            <form wire:submit="startOver" class="flex">
+                <button class="underline text-sm text-warning self-end font-bold">Reset To Defaults</button>
+            </form>
+        </div>
     </div>
 
     @if ($calculationError)

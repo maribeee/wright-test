@@ -15,11 +15,11 @@ class EquationSolver extends Component
 
     public string $newEquationEntry;
 
-    public bool $buttonsDisabled = false;
 
     public string $equationSyntaxError;
     public string $equationSubmittedError;
     public string $calculationError;
+    public bool $buttonsDisabled = false;
 
 
     public function messages()
@@ -29,6 +29,23 @@ class EquationSolver extends Component
             'newEquationEntry.max' => 'Equation must be less than 255 characters',
             'newEquationEntry.string' => 'Equation must be a string',
         ];
+    }
+
+    /**
+     * Resets the page to defaults
+     *
+     * @return void
+     */
+    public function startOver(): void
+    {
+        $this->reset(
+            'equations',
+            'newEquationEntry',
+            'equationSyntaxError',
+            'equationSubmittedError',
+            'calculationError',
+            'buttonsDisabled',
+        );
     }
 
     public function addNewEquation() {
