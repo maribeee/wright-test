@@ -95,10 +95,18 @@ class EquationSolver extends Component
         return true;
     }
 
+    /**
+     * Returns false if variable is next to a number (multiplication)
+     * Returns false if two variables next to each other
+     * Returns false if two operators next to each other
+     *
+     * @param string $equation
+     * @return bool
+     */
     private function variablesCorrectlyPositioned(string $equation): bool
     {
-        if( preg_match('/\d[a-z]|[a-z]\.|\.[a-z]|[a-z]\d|[a-z][a-z]|[+-][+-]/',  $equation) ) {
-            $this->equationSyntaxError = 'Letter variable cannot be directly preceded or followed by a number. Two letter variables or two operators also cannot be directly next to each other';
+        if( preg_match('/\d[a-z]|[a-z]\.|\.[a-z]|[a-z]\d|[a-z][a-z]|[+-][+-]|\.$|\.[+-]/',  $equation) ) {
+            $this->equationSyntaxError = 'Letter variable cannot be directly preceded or followed by a number. Two letter variables or two operators also cannot be directly next to each other. Variable cannot have or be a decimal. Decimal cannot be followed by nothing.';
             $this->equationSubmittedError = 'You submitted: ' . $equation;
             return false;
         }
