@@ -2,25 +2,24 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
+use Illuminate\Support\Arr;
 use Livewire\Attributes\Title;
-
+use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class EquationSolver extends Component
 {
-    public array $equations = array(
-//        "a" => "1+2",
-//        "b" => "a +4 "
-    );
+
+    public array $equations = array();
 
     public string $newEquationEntry;
 
+    public array $solvedEquations = array();
 
     public string $equationSyntaxError;
     public string $equationSubmittedError;
     public string $calculationError;
-    public bool $buttonsDisabled = false;
-
+    public string $buttonsDisabled;
 
     public function messages()
     {
@@ -40,6 +39,7 @@ class EquationSolver extends Component
     {
         $this->reset(
             'equations',
+            'solvedEquations',
             'newEquationEntry',
             'equationSyntaxError',
             'equationSubmittedError',
@@ -48,6 +48,12 @@ class EquationSolver extends Component
         );
     }
 
+    /**
+     * Adds a new equation to array $equations
+     * Linked to the 'Add Equation' button
+     *
+     * @return void
+     */
     public function addNewEquation() {
         $this->reset('equationSyntaxError');
 
@@ -66,13 +72,27 @@ class EquationSolver extends Component
             $validatedEquation = $this->validateEquation($newEquation);
             if($validatedEquation == null || $validatedEquation == '') break;
 
-            dd($validatedEquation);
+            $lastKeyInArray = $this->getLastKey($this->equations);
 
+            if (!$lastKeyInArray) {
+                $this->equations['a'] = $validatedEquation;
+            } elseif ($lastKeyInArray == 'z'){
+                $this->equationSyntaxError = 'You can only have up to 26 equations :(';
+            } else {
+                $nextKey = $this->getNextLetter($lastKeyInArray);
+                $this->equations[$nextKey] = $validatedEquation;
+            }
         }
 
         $this->reset('newEquationEntry');
     }
 
+    /**
+     * Calculates sum of equations in public $equations array
+     * Linked to the 'Calculate' button
+     *
+     * @return void
+     */
     public function calculateEquations() {
         $this->buttonsDisabled = true;
 
@@ -80,9 +100,99 @@ class EquationSolver extends Component
             $this->calculationError = 'Can\'t solve an equation if there\'s no equation, buddy.';
             return;
         }
+
+        foreach($this->equations as $variable=>$equation){
+
+            // First equation cannot be solved if it has a variable
+            if ($this->equationHasVariable($equation) && $variable == 'a') {
+                $this->calculationError = 'Variable in equation \'' . $equation . '\' has no definition or is self-referential, cannot solve. Try again with new equations!';
+            }
+            // If equation has a variable, and it isn't the first equation, parse and solve it
+            elseif ($this->equationHasVariable($equation)) {
+                $equationWithSolvedVariables = $this->parseEquationVariables($equation);
+
+                if($equationWithSolvedVariables == '') {
+                    $this->solvedEquations[$variable] = 'Error';
+                    break;
+                }
+
+                $this->solvedEquations[$variable] = $this->sumEquation($equationWithSolvedVariables);
+            }
+            // If equation has no variable, solve it
+            else {
+                if(!isset($this->solvedEquations[$variable])){
+                    $this->solvedEquations[$variable] = $this->sumEquation($equation);
+                } else {
+                    $this->calculationError = 'Something went wrong, this equation already has a solution!';
+                }
+            }
+        }
     }
 
-        /**
+    /**
+     * Parses array to find variables
+     * If variable found in $solvedEquations, replaces with its value
+     * Returns re-joined equation
+     *
+     * @param string $equation
+     * @return string
+     */
+    private function parseEquationVariables(string $equation): string
+    {
+        $equationArray = preg_split('/([+-])/', $equation, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+        foreach($equationArray as $key=>$value) {
+            if (preg_match('/[a-z]/', $value)) {
+                $solvedVariable = Arr::get($this->solvedEquations, $value);
+
+                if( $solvedVariable == '' ) {
+                    $this->calculationError = 'Something went wrong, could not find a solution for variable \'' . $value . '\'!';
+                    return '';
+                }
+
+                $equationArray[$key] = $solvedVariable;
+            }
+        }
+
+        return join('', $equationArray);
+    }
+
+    /**
+     * Sums an equation
+     *
+     * @param string $equation
+     * @return float|int
+     */
+    private function sumEquation(string $equation): float|int
+    {
+        $equationArray = preg_split('/(?=[+-])/', $equation, -1, PREG_SPLIT_NO_EMPTY);
+        return array_sum($equationArray);
+    }
+
+    /**
+     * Returns the last key of an array
+     *
+     * @param $array
+     * @return int|string|null
+     */
+    private function getLastKey($array): int|string|null
+    {
+        end($array);
+        return key($array);
+    }
+
+    /**
+     * Get next consecutive letter after provided $letter
+     *
+     * @param $letter
+     * @return string
+     */
+    private function getNextLetter($letter): string
+    {
+        return ++$letter;
+    }
+
+    /**
      * Returns the validated equation if it passes all checks, otherwise returns null
      *
      * @param string $equation
@@ -162,9 +272,21 @@ class EquationSolver extends Component
         return true;
     }
 
+    /**
+     * Return true if equation has a letter variable
+     *
+     * @param string $equation
+     * @return bool
+     */
+    private function equationHasVariable(string $equation): bool
+    {
+        return preg_match('/[a-z]/', $equation);
+    }
+
     #[Title('Simple Equation Solver')]
     public function render()
     {
         return view('livewire.equation-solver');
     }
+
 }

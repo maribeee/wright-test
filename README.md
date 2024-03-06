@@ -6,14 +6,15 @@ Hello friends! This is a solution for Wright20's dev test, question #4
 
 I learned Livewire to solve this test and wanted to utilize some elements of Livewire and Livewire validation, as well as to make the solution usable without having to manually add a json file to the project, so I solved it by creating an input which allows users to enter up to 26 equations, each corresponding to a letter of the alphabet as a variable.
 
-Users can enter equations one at a time, or separate them by commas. The equations are validated and then cleaned up. Errors are thrown when equations are invalid, or when the calculation is run and it turns out that vaildly formatted equations are unsolvable.
+Users can enter equations one at a time, or separate them by commas. The equations are validated and then cleaned up. Errors are thrown when equations are invalid, or when the calculation is run, and it turns out that valildly formatted equations are unsolvable.
 
 If I were to flesh this out further, some things to consider doing might be:
 - Componentizing the front end elements such as buttons to be reusable
 - Saving equations to a database
-- Allowing users to delete or edit equations that have already been entered
+- Pulling out each equation into a livewire equation component, allowing users to delete or edit equations that have already been entered, and allowing users to re-run the calculator after making changes
 - Maybe pulling out certain string parsing functionality into utilities so that they could be used across the app (assuming this would be a larger app)
-
+- Maybe allow users to upload a json file with equations to be parsed and solved through the UI
+- Add multiplication and division
 
 ## How To Run
 

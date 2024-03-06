@@ -1,10 +1,10 @@
 <div class="p-4 flex flex-col gap-10">
-
     <div>
         <h1 class="uppercase text-bold text-secondary text-4xl">Simple Equation Summer</h1>
         <p class="pt-4">
             Use this tool to calculate up to 26 addition or subtraction equations.
-            <br/>You can use previous equations as variables in equations further down the line.
+            <br>You can use previous equations as variables in equations further down the line.
+            <br>No multiplication, division, or parentheses supported.
         </p>
     </div>
 
@@ -30,9 +30,9 @@
 
         <div class="mt-4">
             @error('newEquationEntry')
-                <div class="bg-error border border-error text-error rounded-md p-4">
-                    {{ $message }}
-                </div>
+            <div class="bg-error border border-error text-error rounded-md p-4">
+                {{ $message }}
+            </div>
             @enderror
             @if ($equationSyntaxError)
                 <div class="bg-error border border-error text-error rounded-md p-4 flex flex-col gap-3 text-sm">
@@ -62,6 +62,19 @@
                     </div>
                 @endif
             </div>
+
+            @if($solvedEquations)
+                <div class="p-6 flex-1">
+                    <h2 class="font-bold text-xl mb-4">Solved Equations</h2>
+                    <div class="p-6 flex flex-col gap-4">
+                        @foreach ($solvedEquations as $key => $solvedEquation)
+                            <div class="bg-neutral-200 p-4">
+                                <span class="font-bold">{{ $key }}:</span> {{ $solvedEquation }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
 
         <div class="flex flex-col sm:flex-row gap-6 justify-between">
@@ -78,14 +91,14 @@
                 <button class="underline text-sm text-warning self-end font-bold">Reset To Defaults</button>
             </form>
         </div>
+
+        @if ($calculationError)
+            <div class="bg-error border border-error text-error rounded-md p-4 flex flex-col gap-3 text-sm">
+                <p>{{ $calculationError }}</p>
+            </div>
+        @endif
+
     </div>
-
-    @if ($calculationError)
-        <div class="bg-error border border-error text-error rounded-md p-4 flex flex-col gap-3 text-sm">
-            <p>{{ $calculationError }}</p>
-        </div>
-    @endif
-
 
 
 </div>
