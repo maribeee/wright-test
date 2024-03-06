@@ -1,4 +1,4 @@
-<div class="p-4 flex flex-col gap-10">
+<div class="p-8 flex flex-col gap-10">
     <div>
         <h1 class="uppercase text-bold text-secondary text-4xl">Simple Equation Solver</h1>
         <p class="pt-4">

@@ -16,6 +16,12 @@ If I were to flesh this out further, some things to consider doing might be:
 - Maybe allow users to upload a json file with equations to be parsed and solved through the UI
 - Add multiplication and division
 
+### Paths to files where most of the stuff lives
+- `app/Http/Livewire/EquationSolver.php` - The main livewire component
+- `resources/views/livewire/equation-solver.blade.php` - The main view for the livewire component
+- `tests/Feature/EquationSolverTest.php` - The test file for the livewire component
+
+
 ## How To Run
 
 - Clone this project to your local machine and `cd` into the project

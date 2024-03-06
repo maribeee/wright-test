@@ -11,7 +11,8 @@ export default {
         primary: '#ffffff',
         error: '#fef1f1',
         success: '#f1f8f1',
-        button: {
+        highlight: '#ffae00',
+      button: {
           primary: '#ffae00',
           hover: '#f1f8f1',
           disabled: '#bababa',
