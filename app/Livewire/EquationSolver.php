@@ -55,6 +55,12 @@ class EquationSolver extends Component
         $this->reset('newEquationEntry');
     }
 
+    /**
+     * Returns the validated equation if it passes all checks, otherwise returns null
+     *
+     * @param string $equation
+     * @return string|null
+     */
     private function validateEquation(string $equation): ?string
     {
         if ($this->equationIsEmpty($equation)) return null;
@@ -67,6 +73,12 @@ class EquationSolver extends Component
         return $trimmedEquation;
     }
 
+    /**
+     * Returns true if equation is empty
+     *
+     * @param string $equation
+     * @return bool
+     */
     private function equationIsEmpty(string $equation): bool
     {
         if($equation == '' || $equation == null || $equation == ' ') {
@@ -77,9 +89,18 @@ class EquationSolver extends Component
         return false;
     }
 
+    /**
+     * If any characters are not digit, letter, + or -, return false
+     *
+     * If last character is an operator instead of digits or variables, return false
+     * If first character is an operator, the assumption is that it's denoting the positive/negative state of the first variable
+     *
+     * @param string $equation
+     * @return bool
+     */
     private function charactersAreValid(string $equation): bool
     {
-        if( trim($equation, 'a..z0..9+-') !== '' ) {
+        if( trim($equation, 'a..z0..9.+-') !== '' ) {
             $this->equationSyntaxError = 'Invalid characters, we only support addition and subtraction.';
             $this->equationSubmittedError = 'You submitted: ' . $equation;
             return false;
