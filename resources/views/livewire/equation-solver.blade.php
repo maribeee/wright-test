@@ -49,15 +49,36 @@
             <div class="p-6 flex-1">
                 <h2 class="font-bold text-xl mb-4">Equations To Sum</h2>
                 @if($equations)
-                    @foreach ($equations as $key => $equation)
-                        <div>
-                            <span class="font-bold">{{ $key }}:</span> {{ $equation }}
-                        </div>
-                    @endforeach
+                    <div class="p-6 flex flex-col gap-4">
+                        @foreach ($equations as $key => $equation)
+                            <div class="bg-neutral-200 p-4">
+                                <span class="font-bold">{{ $key }}:</span> {{ $equation }}
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="bg-neutral-200 p-4">
+                        Add equations in the input above to calculate them.
+                    </div>
                 @endif
             </div>
         </div>
+
+        <form wire:submit="calculateEquations">
+            <button
+                    class="py-2 px-6 font-bold text-button-primary hover:text-button-hover disabled:text-button-disabled bg-button-primary hover:bg-button-hover disabled:bg-button-disabled disabled:cursor-not-allowed text-xl rounded-md transition-all tracking-wider uppercase"
+                    type="submit"
+                    @if($buttonsDisabled) disabled @endif
+            >Calculate
+            </button>
+        </form>
     </div>
+
+    @if ($calculationError)
+        <div class="bg-error border border-error text-error rounded-md p-4 flex flex-col gap-3 text-sm">
+            <p>{{ $calculationError }}</p>
+        </div>
+    @endif
 
 
 

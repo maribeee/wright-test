@@ -9,8 +9,8 @@ use Livewire\Attributes\Title;
 class EquationSolver extends Component
 {
     public array $equations = array(
-        "a" => "1+2",
-        "b" => "a +4 "
+//        "a" => "1+2",
+//        "b" => "a +4 "
     );
 
     public string $newEquationEntry;
@@ -19,6 +19,7 @@ class EquationSolver extends Component
 
     public string $equationSyntaxError;
     public string $equationSubmittedError;
+    public string $calculationError;
 
 
     public function messages()
@@ -55,7 +56,16 @@ class EquationSolver extends Component
         $this->reset('newEquationEntry');
     }
 
-    /**
+    public function calculateEquations() {
+        $this->buttonsDisabled = true;
+
+        if(!$this->equations) {
+            $this->calculationError = 'Can\'t solve an equation if there\'s no equation, buddy.';
+            return;
+        }
+    }
+
+        /**
      * Returns the validated equation if it passes all checks, otherwise returns null
      *
      * @param string $equation
