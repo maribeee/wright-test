@@ -6,7 +6,9 @@ Hello friends! This is a solution for Wright20's dev test, question #4
 
 [Here is a link to the app live on fly.io](https://wright-test.fly.dev/)
 
-I learned Livewire to solve this test and wanted to utilize some elements of Livewire and Livewire validation, as well as to make the solution usable without having to manually add a json file to the project, so I solved it by creating an input which allows users to enter up to 26 equations, each corresponding to a letter of the alphabet as a variable.
+I learned Livewire to solve this test and wanted to utilize some elements of Livewire and Livewire validation, as well as to make the solution usable without having to manually add a json file to the project, so I solved it by creating an input which allows users to enter up to 26 equations, each corresponding to a letter of the alphabet as a variable. 
+
+For front end design I used Tailwind.
 
 Users can enter equations one at a time, or separate them by commas. The equations are validated and then cleaned up. Errors are thrown when equations are invalid, or when the calculation is run, and it turns out that valildly formatted equations are unsolvable.
 
@@ -22,7 +24,9 @@ If I were to flesh this out further, some things to consider doing might be:
 - `app/Http/Livewire/EquationSolver.php` - The main livewire component
 - `resources/views/livewire/equation-solver.blade.php` - The main view for the livewire component
 - `tests/Feature/EquationSolverTest.php` - The test file for the livewire component
+- `tailwind.config.js` - The tailwind config file
 
+Check out the commits in [the github project](https://github.com/maribeee/wright-test) for more insights. 
 
 ## How To Run Locally
 
